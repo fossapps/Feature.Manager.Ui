@@ -11,7 +11,7 @@ const tslintRules = {
     "check-space"
   ],
   "create-async-actions": true,
-  "enum-sort-keys": true,
+  "enum-sort-keys": false,
   "export-name": true,
   "function-constructor": true,
   "function-name": [
