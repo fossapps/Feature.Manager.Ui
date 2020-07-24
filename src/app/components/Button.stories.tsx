@@ -11,6 +11,11 @@ export default {
 export const Primary = () => <Button>Primary</Button>;
 export const Secondary = () => <Button type={"secondary"}>Secondary</Button>;
 export const Disabled = () => <Button disabled={true}>Disabled</Button>;
+export const Success = () => <Button type="success">Success</Button>;
+export const Error = () => <Button type="error">Error</Button>;
+export const Small = () => <Button btnSize="small">Small</Button>;
+export const Default = () => <Button>Default</Button>;
+export const Large = () => <Button btnSize="large">Large</Button>;
 export const StyledButton = () => {
   const style = {
     backgroundColor: Color.BLACK,
