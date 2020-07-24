@@ -1,14 +1,14 @@
 jest.mock("./dummyApi");
-import {runSaga} from "redux-saga";
-import {dummyApi} from "./dummyApi";
-import {SettingsSaga} from "./SettingsSaga";
+import { runSaga } from "redux-saga";
+import { dummyApi } from "./dummyApi";
+import { SettingsSaga } from "./SettingsSaga";
 
 describe("SettingsSaga", () => {
   describe("fetchTranslations", () => {
     it("gets translations and sets fulfilled", () => {
       expect.assertions(1);
       const dispatched = [];
-      (dummyApi as any).getTranslations.mockResolvedValue({"Translation Key": "Translation Value"});
+      (dummyApi as any).getTranslations.mockResolvedValue({ "Translation Key": "Translation Value" });
       return runSaga(
         {
           dispatch: (action) => dispatched.push(action)
@@ -20,8 +20,8 @@ describe("SettingsSaga", () => {
         }
       ).toPromise().then(() => {
         expect(dispatched).toEqual([
-          {payload: null, type: "SETTINGS/SET_LANGUAGE_PENDING"},
-          {payload: {"Translation Key": "Translation Value"}, type: "SETTINGS/SET_LANGUAGE_FULFILLED"}
+          { payload: null, type: "SETTINGS/SET_LANGUAGE_PENDING" },
+          { payload: { "Translation Key": "Translation Value" }, type: "SETTINGS/SET_LANGUAGE_FULFILLED" }
         ]);
       });
     });
@@ -41,8 +41,8 @@ describe("SettingsSaga", () => {
         }
       ).toPromise().then(() => {
         expect(dispatched).toEqual([
-          {payload: null, type: "SETTINGS/SET_LANGUAGE_PENDING"},
-          {message: "Error", payload: null, type: "SETTINGS/SET_LANGUAGE_REJECTED"}
+          { payload: null, type: "SETTINGS/SET_LANGUAGE_PENDING" },
+          { message: "Error", payload: null, type: "SETTINGS/SET_LANGUAGE_REJECTED" }
         ]);
       });
     });

@@ -1,14 +1,14 @@
 import * as React from "react";
-import {connect} from "react-redux";
-import {Dispatch} from "redux";
-import {createSelector} from "reselect";
-import {Button} from "../components/Button";
-import {Translator} from "../models/Translator";
-import {ITranslator} from "../models/TranslatorInterfaces";
-import {IStore} from "../redux/IStore";
-import {setLanguage as setLanguageActionCreator} from "../redux/modules/settingsActionCreators";
-import {TLanguage} from "../redux/modules/settingsModule";
-import {translationsSelector} from "../selectors/translationsSelector";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { createSelector } from "reselect";
+import { Button } from "../components/Button";
+import { Translator } from "../models/Translator";
+import { ITranslator } from "../models/TranslatorInterfaces";
+import { IStore } from "../redux/IStore";
+import { setLanguage as setLanguageActionCreator } from "../redux/modules/settingsActionCreators";
+import { TLanguage } from "../redux/modules/settingsModule";
+import { translationsSelector } from "../selectors/translationsSelector";
 
 interface IStateToProps {
   language: string;
@@ -32,7 +32,7 @@ class AboutPage extends React.Component<IProps> {
   }
 
   public render(): JSX.Element {
-    const {language, translations} = this.props;
+    const { language, translations } = this.props;
     return (
       <div>
         <h3>{translations.aboutUs}: {language}</h3>
@@ -74,4 +74,4 @@ export const mapDispatchToProps = (dispatch: Dispatch): IDispatchToProps => {
 };
 
 const connected = connect(mapStateToProps, mapDispatchToProps)(AboutPage);
-export {AboutPage as UnconnectedAboutPage, connected as AboutPage};
+export { AboutPage as UnconnectedAboutPage, connected as AboutPage };

@@ -1,17 +1,17 @@
 import * as React from "react";
-import {connect} from "react-redux";
-import {Dispatch} from "redux";
-import {createSelector} from "reselect";
-import {stylesheet} from "typestyle";
-import {Button} from "../components/Button";
-import {Translator} from "../models/Translator";
-import {ITranslator} from "../models/TranslatorInterfaces";
-import {IStore} from "../redux/IStore";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { createSelector } from "reselect";
+import { stylesheet } from "typestyle";
+import { Button } from "../components/Button";
+import { Translator } from "../models/Translator";
+import { ITranslator } from "../models/TranslatorInterfaces";
+import { IStore } from "../redux/IStore";
 import {
   decrement as decrementActionCreator,
   increment as incrementActionCreator
 } from "../redux/modules/counterActionCreators";
-import {translationsSelector} from "../selectors/translationsSelector";
+import { translationsSelector } from "../selectors/translationsSelector";
 
 const classNames = stylesheet({
   moveRight: {
@@ -37,7 +37,7 @@ export interface IProps extends IStateToProps, IDispatchToProps {}
 
 class CounterPage extends React.Component<IProps> {
   public render(): JSX.Element {
-    const {count, decrement, increment, translations} = this.props;
+    const { count, decrement, increment, translations } = this.props;
     return (
       <div>
         <h4>{translations.counter}</h4>
@@ -81,4 +81,4 @@ function mapDispatchToProps(dispatch: Dispatch): IDispatchToProps {
 
 const connected = connect(mapStateToProps, mapDispatchToProps)(CounterPage);
 
-export {connected as CounterPage, CounterPage as UnconnectedCounterPage, mapDispatchToProps, mapStateToProps};
+export { connected as CounterPage, CounterPage as UnconnectedCounterPage, mapDispatchToProps, mapStateToProps };

@@ -1,15 +1,15 @@
-import {shallow} from "enzyme";
+import { shallow } from "enzyme";
 import * as React from "react";
-import {State as IRouteState} from "router5";
-import {HomePage} from "../pages/HomePage";
-import {ISettingsState} from "../redux/modules/settingsModule";
-import {getRoutes} from "../routes/routes";
-import {classNames, mapStateToProps, UnconnectedApp} from "./App";
+import { State as IRouteState } from "router5";
+import { HomePage } from "../pages/HomePage";
+import { ISettingsState } from "../redux/modules/settingsModule";
+import { getRoutes } from "../routes/routes";
+import { classNames, mapStateToProps, UnconnectedApp } from "./App";
 
 describe("<App />", () => {
   const routes = getRoutes();
   const route: IRouteState = {
-    meta: {id: 1, params: {}, options: {}, redirected: false},
+    meta: { id: 1, params: {}, options: {}, redirected: false },
     name: routes.homePage.name,
     params: {},
     path: "/"
@@ -24,17 +24,17 @@ describe("<App />", () => {
     language: "en",
     loaded: true,
     pending: false,
-    translations: {"Not found": "Not Found"}
+    translations: { "Not found": "Not Found" }
   };
-  const translations = {notFound: "Not Found"};
+  const translations = { notFound: "Not Found" };
 
   it("maps state to props correctly", () => {
     const props = mapStateToProps({
-      router: {route, previousRoute: route, transitionRoute: null, transitionError: null},
+      router: { route, previousRoute: route, transitionRoute: null, transitionError: null },
       settings
     });
     expect(props.route).toEqual(route);
-    expect(props.translations).toEqual({notFound: "Not Found"});
+    expect(props.translations).toEqual({ notFound: "Not Found" });
   });
 
   it("renders with correct style", () => {

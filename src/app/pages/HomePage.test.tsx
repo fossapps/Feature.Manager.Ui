@@ -1,7 +1,7 @@
-import {shallow} from "enzyme";
+import { shallow } from "enzyme";
 import * as React from "react";
-import {ISettingsState} from "../redux/modules/settingsModule";
-import {mapStateToProps, UnconnectedHomePage} from "./HomePage";
+import { ISettingsState } from "../redux/modules/settingsModule";
+import { mapStateToProps, UnconnectedHomePage } from "./HomePage";
 describe("<HomePage />", () => {
   const translations = {
     hello: "Hello!"
@@ -13,9 +13,9 @@ describe("<HomePage />", () => {
       language: "en",
       loaded: true,
       pending: false,
-      translations: {Hello: "Hello!"}
+      translations: { Hello: "Hello!" }
     };
-    const props = mapStateToProps({settings});
+    const props = mapStateToProps({ settings });
     expect(props).toEqual({
       translations: {
         hello: "Hello!"

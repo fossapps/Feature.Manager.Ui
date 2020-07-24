@@ -1,9 +1,9 @@
 import autobind from "autobind-decorator";
-import {call, CallEffect, ForkEffect, put, PutEffect, takeLatest} from "redux-saga/effects";
-import {getType} from "typesafe-actions";
-import {loadStarsCount} from "../redux/modules/starsActionCreators";
-import {BaseSaga} from "./BaseSaga";
-import {dummyApi} from "./dummyApi";
+import { call, CallEffect, ForkEffect, put, PutEffect, takeLatest } from "redux-saga/effects";
+import { getType } from "typesafe-actions";
+import { loadStarsCount } from "../redux/modules/starsActionCreators";
+import { BaseSaga } from "./BaseSaga";
+import { dummyApi } from "./dummyApi";
 
 export class StarsSaga extends BaseSaga {
   @autobind

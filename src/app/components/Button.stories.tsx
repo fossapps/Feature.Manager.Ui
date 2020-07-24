@@ -1,7 +1,7 @@
 import * as React from "react";
-import {Color} from "../constants";
-import {withInitialState} from "../helpers/withInitialState";
-import {Button} from "./Button";
+import { Color } from "../constants";
+import { withInitialState } from "../helpers/withInitialState";
+import { Button } from "./Button";
 
 export default {
   component: Button,
@@ -29,14 +29,14 @@ export const StyledButton = () => {
     </Button>
   );
 };
-export const SwitchableButton = ({state, setState}) => (
+export const SwitchableButton = ({ state, setState }) => (
   <Button
     type={state.type}
-    onClick={() => setState({type: state.type === "primary" ? "secondary" : "primary"})}
+    onClick={() => setState({ type: state.type === "primary" ? "secondary" : "primary" })}
   >
     Click me!
   </Button>
 );
 SwitchableButton.story = {
-  decorators: [withInitialState({type: "primary"})]
+  decorators: [withInitialState({ type: "primary" })]
 };

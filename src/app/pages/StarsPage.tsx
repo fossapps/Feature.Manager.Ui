@@ -1,12 +1,12 @@
 import * as React from "react";
-import {connect} from "react-redux";
-import {Dispatch} from "redux";
-import {createSelector} from "reselect";
-import {Translator} from "../models/Translator";
-import {ITranslator} from "../models/TranslatorInterfaces";
-import {IStore} from "../redux/IStore";
-import {loadStarsCount as loadStarsActionCreator} from "../redux/modules/starsActionCreators";
-import {translationsSelector} from "../selectors/translationsSelector";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { createSelector } from "reselect";
+import { Translator } from "../models/Translator";
+import { ITranslator } from "../models/TranslatorInterfaces";
+import { IStore } from "../redux/IStore";
+import { loadStarsCount as loadStarsActionCreator } from "../redux/modules/starsActionCreators";
+import { translationsSelector } from "../selectors/translationsSelector";
 
 interface IStateToProps {
   count: number;
@@ -33,7 +33,7 @@ class StarsPage extends React.Component<IProps> {
   }
 
   public render(): JSX.Element {
-    const {count, error, pending, translations} = this.props;
+    const { count, error, pending, translations } = this.props;
     if (pending) {
       return <div>{translations.fetchingStars}</div>;
     } else {
@@ -69,4 +69,4 @@ function mapDispatchToProps(dispatch: Dispatch): IDispatchToProps {
 }
 
 const connected = connect(mapStateToProps, mapDispatchToProps)(StarsPage);
-export {connected as StarsPage, mapDispatchToProps, mapStateToProps, StarsPage as UnconnectedStarsPage};
+export { connected as StarsPage, mapDispatchToProps, mapStateToProps, StarsPage as UnconnectedStarsPage };

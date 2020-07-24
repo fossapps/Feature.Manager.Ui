@@ -1,4 +1,4 @@
-import {ITranslations} from "../redux/modules/settingsModule";
+import { ITranslations } from "../redux/modules/settingsModule";
 
 // Don't forget to enable this in production!
 // tslint:disable:no-http-string

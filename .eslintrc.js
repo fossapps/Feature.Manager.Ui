@@ -135,7 +135,7 @@ const tslintRules = {
     true,
     "double"
   ],
-   // todo: Specifying excluded files as an option used to work until updating eslint and it's parsers.
+  // todo: Specifying excluded files as an option used to work until updating eslint and it's parsers.
   "react-no-dangerous-html": true,
   "react-this-binding-issue": true,
   "semicolon": [
@@ -224,7 +224,15 @@ module.exports = {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/ban-types": "error",
-    "@typescript-eslint/class-name-casing": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {selector: "memberLike", format: ["camelCase"]},
+      {selector: "property", format: []},
+      {selector: "function", format: ["camelCase"]},
+      {selector: "typeLike", format: ["PascalCase"]},
+      {selector: "interface", format: ["PascalCase"], prefix: ["I"]},
+      {selector: "enumMember", format: ["UPPER_CASE"]},
+    ],
     "@typescript-eslint/consistent-type-assertions": "error",
     "@typescript-eslint/explicit-member-accessibility": [
       "error",
@@ -235,13 +243,7 @@ module.exports = {
       }
     ],
     "@typescript-eslint/indent": ["error", 2],
-    "@typescript-eslint/interface-name-prefix": [
-      "error",
-      {
-        "prefixWithI": "always"
-      }
-    ],
-    "@typescript-eslint/member-ordering": "off",
+    "@typescript-eslint/member-ordering": "error",
     "@typescript-eslint/no-empty-function": "error",
     "@typescript-eslint/no-empty-interface": "error",
     "@typescript-eslint/no-explicit-any": "off",
@@ -325,6 +327,7 @@ module.exports = {
     "one-var": "off",
     "prefer-const": "error",
     "prefer-object-spread": "error",
+    "object-curly-spacing": ["error", "always"],
     "quote-props": [
       "error",
       "consistent-as-needed"

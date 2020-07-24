@@ -1,9 +1,9 @@
-import {shallow} from "enzyme";
+import { shallow } from "enzyme";
 import * as React from "react";
-import {Button} from "../components/Button";
-import {setLanguage as setLanguageActionCreator} from "../redux/modules/settingsActionCreators";
-import {ISettingsState} from "../redux/modules/settingsModule";
-import {mapDispatchToProps, mapStateToProps, UnconnectedAboutPage} from "./AboutPage";
+import { Button } from "../components/Button";
+import { setLanguage as setLanguageActionCreator } from "../redux/modules/settingsActionCreators";
+import { ISettingsState } from "../redux/modules/settingsModule";
+import { mapDispatchToProps, mapStateToProps, UnconnectedAboutPage } from "./AboutPage";
 
 /* tslint:disable:no-empty jsx-no-lambda */
 describe("<AboutPage />", () => {
@@ -19,9 +19,9 @@ describe("<AboutPage />", () => {
       language: "en",
       loaded: true,
       pending: false,
-      translations: {"About us": "About Us", "Change language": "Change", "Current language": "Current Language"}
+      translations: { "About us": "About Us", "Change language": "Change", "Current language": "Current Language" }
     };
-    const props = mapStateToProps({settings});
+    const props = mapStateToProps({ settings });
     expect(props.language).toBe("en");
     expect(props.translations).toEqual(translations);
   });
