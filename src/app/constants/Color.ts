@@ -5,5 +5,6 @@ export enum Color {
   PRIMARY = "#5e72e4",
   SECONDARY = "#172b4d",
   SUCCESS = "#2dce89",
-  ERROR = "#f5365c"
+  DANGER = "#f5365c",
+  INFO = "#11cdef"
 }

@@ -42,7 +42,7 @@ class HomePage extends React.Component<IStateToProps> {
         &nbsp;
         <Button type="secondary">secondary</Button>
         &nbsp;
-        <Button type="error">error</Button>
+        <Button type="danger">error</Button>
         &nbsp;
         <Button type="success">success</Button>
       </div>

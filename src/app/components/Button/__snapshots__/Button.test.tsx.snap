@@ -10,7 +10,7 @@ exports[`Button should match snapshot 1`] = `
 
 exports[`Button should match snapshot 2`] = `
 <button
-  className="button_fbnlpvc error_f1f5vffv default_f1tpsmcd"
+  className="button_fbnlpvc danger_f1f5vffv default_f1tpsmcd"
 >
   Error
 </button>
