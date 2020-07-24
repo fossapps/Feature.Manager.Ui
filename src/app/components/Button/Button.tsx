@@ -15,6 +15,11 @@ const classNames = stylesheet({
       }
     }
   },
+  danger: {
+    backgroundColor: Color.DANGER,
+    color: Color.WHITE,
+    cursor: "pointer"
+  },
   default: {
     fontSize: "16px",
     padding: "10px 25px"
@@ -24,11 +29,6 @@ const classNames = stylesheet({
     border: "none",
     color: Color.BLACK,
     cursor: "not-allowed"
-  },
-  error: {
-    backgroundColor: Color.ERROR,
-    color: Color.WHITE,
-    cursor: "pointer"
   },
   large: {
     fontSize: "18px",
@@ -55,7 +55,7 @@ const classNames = stylesheet({
   }
 });
 
-export type TButtonType = "primary" | "secondary" | "error" | "success";
+export type TButtonType = "primary" | "secondary" | "danger" | "success";
 export type TButtonSize = "small" | "default" | "large";
 
 interface IProps extends React.HTMLProps<HTMLButtonElement> {
