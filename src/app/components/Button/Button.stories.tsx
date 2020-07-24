@@ -21,7 +21,7 @@ export const StyledButton = () => {
     backgroundColor: Color.BLACK,
     border: 0,
     borderRadius: 5,
-    color: Color.BLUE
+    color: Color.PRIMARY
   };
   return (
     <Button style={style}>
