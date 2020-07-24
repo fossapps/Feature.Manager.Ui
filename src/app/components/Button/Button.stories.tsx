@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Color } from "../constants";
-import { withInitialState } from "../helpers/withInitialState";
+import { Color } from "../../constants";
+import { withInitialState } from "../../helpers/withInitialState";
 import { Button } from "./Button";
 
 export default {
