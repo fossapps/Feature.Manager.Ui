@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { createSelector } from "reselect";
 import { stylesheet } from "typestyle";
-import { Button } from "../components/Button";
+import { Button } from "../components/Button/Button";
 import { Translator } from "../models/Translator";
 import { ITranslator } from "../models/TranslatorInterfaces";
 import { IStore } from "../redux/IStore";
