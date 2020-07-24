@@ -1,4 +1,4 @@
-import {Action} from "redux";
+import { Action } from "redux";
 
 export interface IAction<P, T = string, M = string> extends Action<T> {
   message?: M;
@@ -41,17 +41,17 @@ export function createAsyncActions<T1 extends string, T2 extends string, T3 exte
 ): TGetAsyncAction<T1, T2, T3, T4> {
 
   function builder<P1, P2, P3, P4>(): IAsyncActionsBuilder<T1, T2, T3, T4, P1, P2, P3, P4> {
-    const invokeActionCreator = (payload: P1): IAction<P1, T1> => ({type: baseType, payload});
+    const invokeActionCreator = (payload: P1): IAction<P1, T1> => ({ type: baseType, payload });
     invokeActionCreator.getType = () => baseType;
 
-    const fulfilledActionCreator = (payload: P3): IAction<P3, T3> => ({type: fulfilledType, payload});
+    const fulfilledActionCreator = (payload: P3): IAction<P3, T3> => ({ type: fulfilledType, payload });
     fulfilledActionCreator.getType = () => fulfilledType;
 
-    const pendingActionCreator = (payload: P2): IAction<P2, T2> => ({type: pendingType, payload});
+    const pendingActionCreator = (payload: P2): IAction<P2, T2> => ({ type: pendingType, payload });
     pendingActionCreator.getType = () => pendingType;
 
     const rejectedActionCreator = (payload: P4, message: string): IAction<P4, T4> => (
-      {type: rejectedType, message, payload}
+      { type: rejectedType, message, payload }
     );
     rejectedActionCreator.getType = () => rejectedType;
 

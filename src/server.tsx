@@ -5,17 +5,17 @@ import "cross-fetch/polyfill";
 import express from "express";
 import path from "path";
 import * as React from "react";
-import {renderToString} from "react-dom/server";
-import {Provider} from "react-redux";
-import {RouterProvider} from "react-router5";
+import { renderToString } from "react-dom/server";
+import { Provider } from "react-redux";
+import { RouterProvider } from "react-router5";
 import favicon from "serve-favicon";
-import {config as appConfig} from "../config";
-import {App} from "./app/containers/App";
-import {Html} from "./app/containers/Html";
-import {LanguageHelper} from "./app/helpers/LanguageHelper";
-import {configureStore} from "./app/redux/configureStore";
-import {IStore} from "./app/redux/IStore";
-import {configureRouter} from "./app/routes/configureRouter";
+import { config as appConfig } from "../config";
+import { App } from "./app/containers/App";
+import { Html } from "./app/containers/Html";
+import { LanguageHelper } from "./app/helpers/LanguageHelper";
+import { configureStore } from "./app/redux/configureStore";
+import { IStore } from "./app/redux/IStore";
+import { configureRouter } from "./app/routes/configureRouter";
 import rootSaga from "./app/sagas/rootSaga";
 
 const app = express();
@@ -29,7 +29,7 @@ if (process.env.NODE_ENV !== "production") {
     lazy: false,
     logLevel: "info",
     publicPath: webpackConfig.output.publicPath,
-    stats: {colors: true}
+    stats: { colors: true }
   }));
 
   app.use(require("webpack-hot-middleware")(webpackCompiler));

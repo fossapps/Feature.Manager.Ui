@@ -1,5 +1,5 @@
-import {setLanguage} from "./settingsActionCreators";
-import {ISettingsState, settingsReducer} from "./settingsModule";
+import { setLanguage } from "./settingsActionCreators";
+import { ISettingsState, settingsReducer } from "./settingsModule";
 
 describe("settingsModule", () => {
   describe("reducer", () => {
@@ -11,7 +11,7 @@ describe("settingsModule", () => {
         pending: false,
         translations: {}
       };
-      expect(settingsReducer(undefined, {type: undefined})).toEqual(initialState);
+      expect(settingsReducer(undefined, { type: undefined })).toEqual(initialState);
     });
 
     it("handles invoke action", () => {
@@ -56,12 +56,12 @@ describe("settingsModule", () => {
         pending: true,
         translations: {}
       };
-      expect(settingsReducer(state, setLanguage.setFulfilled({Hello: "Hallo"}))).toEqual({
+      expect(settingsReducer(state, setLanguage.setFulfilled({ Hello: "Hallo" }))).toEqual({
         error: "",
         language: "de",
         loaded: true,
         pending: false,
-        translations: {Hello: "Hallo"}
+        translations: { Hello: "Hallo" }
       });
     });
 
@@ -88,9 +88,9 @@ describe("settingsModule", () => {
         language: "en",
         loaded: false,
         pending: false,
-        translations: {Hello: "Hallo"}
+        translations: { Hello: "Hallo" }
       };
-      expect(settingsReducer(state, {type: "unknown"} as any)).toBe(state);
+      expect(settingsReducer(state, { type: "unknown" } as any)).toBe(state);
     });
   });
 });

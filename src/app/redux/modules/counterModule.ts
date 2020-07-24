@@ -1,5 +1,5 @@
-import {ActionType, getType} from "typesafe-actions";
-import {IBaseState} from "./baseModule";
+import { ActionType, getType } from "typesafe-actions";
+import { IBaseState } from "./baseModule";
 import * as counterActionCreators from "./counterActionCreators";
 
 export interface ICounterState extends IBaseState {

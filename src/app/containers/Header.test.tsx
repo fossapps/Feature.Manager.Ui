@@ -1,9 +1,9 @@
-import {shallow} from "enzyme";
+import { shallow } from "enzyme";
 import * as React from "react";
-import {ConnectedLink} from "react-router5";
-import {ISettingsState} from "../redux/modules/settingsModule";
-import {getRoutes} from "../routes/routes";
-import {mapStateToProps, UnconnectedHeader} from "./Header";
+import { ConnectedLink } from "react-router5";
+import { ISettingsState } from "../redux/modules/settingsModule";
+import { getRoutes } from "../routes/routes";
+import { mapStateToProps, UnconnectedHeader } from "./Header";
 
 describe("<Header />", () => {
   const translations = {
@@ -26,7 +26,7 @@ describe("<Header />", () => {
         "Stars": "Stars"
       }
     };
-    const props = mapStateToProps({settings});
+    const props = mapStateToProps({ settings });
     expect(props).toEqual({
       translations
     });

@@ -1,13 +1,13 @@
 import * as React from "react";
-import {connect} from "react-redux";
-import {ConnectedLink} from "react-router5";
-import {createSelector} from "reselect";
-import {stylesheet} from "typestyle";
-import {Translator} from "../models/Translator";
-import {ITranslator} from "../models/TranslatorInterfaces";
-import {IStore} from "../redux/IStore";
-import {getRoutes} from "../routes/routes";
-import {translationsSelector} from "../selectors/translationsSelector";
+import { connect } from "react-redux";
+import { ConnectedLink } from "react-router5";
+import { createSelector } from "reselect";
+import { stylesheet } from "typestyle";
+import { Translator } from "../models/Translator";
+import { ITranslator } from "../models/TranslatorInterfaces";
+import { IStore } from "../redux/IStore";
+import { getRoutes } from "../routes/routes";
+import { translationsSelector } from "../selectors/translationsSelector";
 
 const classNames = stylesheet({
   activeLink: {
@@ -40,7 +40,7 @@ interface IStateToProps {
 
 class Header extends React.Component<IStateToProps> {
   public render(): JSX.Element {
-    const {translations} = this.props;
+    const { translations } = this.props;
     const routes = getRoutes();
     return (
       <nav className={classNames.nav}>
@@ -91,4 +91,4 @@ function mapStateToProps(state: Pick<IStore, "settings">): IStateToProps {
 }
 
 const connected = connect(mapStateToProps)(Header);
-export {connected as Header, Header as UnconnectedHeader, mapStateToProps};
+export { connected as Header, Header as UnconnectedHeader, mapStateToProps };

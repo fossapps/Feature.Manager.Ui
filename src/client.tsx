@@ -3,14 +3,14 @@ import * as e6p from "es6-promise";
 import "cross-fetch/polyfill";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {Provider} from "react-redux";
-import {RouterProvider} from "react-router5";
-import {setStylesTarget} from "typestyle";
-import {config as appConfig} from "../config";
-import {App} from "./app/containers/App";
-import {configureStore} from "./app/redux/configureStore";
-import {setLanguage} from "./app/redux/modules/settingsActionCreators";
-import {configureRouter} from "./app/routes/configureRouter";
+import { Provider } from "react-redux";
+import { RouterProvider } from "react-router5";
+import { setStylesTarget } from "typestyle";
+import { config as appConfig } from "../config";
+import { App } from "./app/containers/App";
+import { configureStore } from "./app/redux/configureStore";
+import { setLanguage } from "./app/redux/modules/settingsActionCreators";
+import { configureRouter } from "./app/routes/configureRouter";
 import rootSaga from "./app/sagas/rootSaga";
 
 const ReactHotLoader = appConfig.env !== "production"
@@ -43,7 +43,7 @@ setStylesTarget(document.getElementById("styles-target"));
 
 if ((module as any).hot) {
   (module as any).hot.accept("./app/containers/App", () => {
-    const {App: NewApp} = require("./app/containers/App");
+    const NewApp = require("./app/containers/App").App;
     renderOrHydrate(
       (
         <ReactHotLoader>

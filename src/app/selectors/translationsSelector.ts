@@ -1,3 +1,3 @@
-import {IStore} from "../redux/IStore";
+import { IStore } from "../redux/IStore";
 
 export const translationsSelector = (state: Pick<IStore, "settings">) => state.settings?.translations;

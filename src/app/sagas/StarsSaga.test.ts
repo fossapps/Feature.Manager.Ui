@@ -1,7 +1,7 @@
 jest.mock("./dummyApi");
-import {runSaga} from "redux-saga";
-import {dummyApi} from "./dummyApi";
-import {StarsSaga} from "./StarsSaga";
+import { runSaga } from "redux-saga";
+import { dummyApi } from "./dummyApi";
+import { StarsSaga } from "./StarsSaga";
 
 describe("StarsSaga", () => {
   describe("fetchStarsCount", () => {
@@ -16,8 +16,8 @@ describe("StarsSaga", () => {
         (new StarsSaga()).fetchStarsCount
       ).toPromise().then(() => {
         expect(dispatched).toEqual([
-          {payload: null, type: "STARS/LOAD_STARS_COUNT_PENDING"},
-          {payload: 10, type: "STARS/LOAD_STARS_COUNT_FULFILLED"}
+          { payload: null, type: "STARS/LOAD_STARS_COUNT_PENDING" },
+          { payload: 10, type: "STARS/LOAD_STARS_COUNT_FULFILLED" }
         ]);
       });
     });
@@ -33,8 +33,8 @@ describe("StarsSaga", () => {
         (new StarsSaga()).fetchStarsCount
       ).toPromise().then(() => {
         expect(dispatched).toEqual([
-          {payload: null, type: "STARS/LOAD_STARS_COUNT_PENDING"},
-          {message: "Error", payload: null, type: "STARS/LOAD_STARS_COUNT_REJECTED"}
+          { payload: null, type: "STARS/LOAD_STARS_COUNT_PENDING" },
+          { message: "Error", payload: null, type: "STARS/LOAD_STARS_COUNT_REJECTED" }
         ]);
       });
     });

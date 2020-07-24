@@ -23,7 +23,7 @@ export class LanguageHelper {
     return ["en", "de"];
   }
 
-  private static getTranslations(language: string): object {
+  private static getTranslations(language: string): Record<string, unknown> {
     return JSON.parse(fs.readFileSync(LanguageHelper.getLanguageFileLocation(language)).toString());
   }
 

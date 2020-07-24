@@ -1,9 +1,9 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import serialize from "serialize-javascript";
-import {getStyles} from "typestyle";
-import {IStore} from "../redux/IStore";
+import { getStyles } from "typestyle";
+import { IStore } from "../redux/IStore";
 
 interface IHtmlProps {
   initialState?: Partial<IStore>;
@@ -14,7 +14,7 @@ interface IHtmlProps {
 export class Html extends React.Component<IHtmlProps> {
   public render(): JSX.Element {
     const head = Helmet.renderStatic();
-    const {markup, initialState} = this.props;
+    const { markup, initialState } = this.props;
 
     // styles from typestyle
     const renderStyles = <style id="styles-target">{getStyles()}</style>;
@@ -30,7 +30,7 @@ export class Html extends React.Component<IHtmlProps> {
     const initialStateScript = (
       // tslint:disable-next-line:react-no-dangerous-html
       <script
-        dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__=${serialize(initialState, {isJSON: true})};`}}
+        dangerouslySetInnerHTML={{ __html: `window.__INITIAL_STATE__=${serialize(initialState, { isJSON: true })};` }}
         charSet="UTF-8"
       />
     );
@@ -49,7 +49,7 @@ export class Html extends React.Component<IHtmlProps> {
         </head>
         <body>
           {/* tslint:disable-next-line:react-no-dangerous-html */}
-          <main id="app" dangerouslySetInnerHTML={{__html: markup}}/>
+          <main id="app" dangerouslySetInnerHTML={{ __html: markup }}/>
           {initialStateScript}
           {scripts}
         </body>
@@ -57,9 +57,10 @@ export class Html extends React.Component<IHtmlProps> {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   @autobind
   private getFileNames(endsWith: string): string[] {
-    const {manifest} = this.props;
+    const { manifest } = this.props;
     const scriptFileNames: string[] = [];
     Object.keys(manifest).forEach((key: string) => {
       if (manifest[key].endsWith(endsWith)) {
