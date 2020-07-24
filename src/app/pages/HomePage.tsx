@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { createSelector } from "reselect";
 import { stylesheet } from "typestyle";
-import { Button } from "../components/Button";
+import { Button } from "../components/Button/Button";
 import { Color } from "../constants/Color";
 import crazyImage from "../images/crazy.png";
 import { Translator } from "../models/Translator";
@@ -12,7 +12,7 @@ import { translationsSelector } from "../selectors/translationsSelector";
 
 const classNames = stylesheet({
   container: {
-    color: Color.BLUE,
+    color: Color.PRIMARY,
     textAlign: "center"
   }
 });

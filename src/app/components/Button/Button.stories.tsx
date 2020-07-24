@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Color } from "../constants";
-import { withInitialState } from "../helpers/withInitialState";
+import { Color } from "../../constants";
+import { withInitialState } from "../../helpers/withInitialState";
 import { Button } from "./Button";
 
 export default {
@@ -21,7 +21,7 @@ export const StyledButton = () => {
     backgroundColor: Color.BLACK,
     border: 0,
     borderRadius: 5,
-    color: Color.BLUE
+    color: Color.PRIMARY
   };
   return (
     <Button style={style}>

@@ -185,7 +185,8 @@ const tslintRules = {
 module.exports = {
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    jest: true
   },
   "overrides": [
     {
@@ -213,7 +214,7 @@ module.exports = {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "tsconfig.json",
-    "sourceType": "module"
+    "sourceType": "module",
   },
   "plugins": [
     "@typescript-eslint",

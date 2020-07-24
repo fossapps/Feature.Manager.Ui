@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should match snapshot 1`] = `
+<button
+  className="button_fbnlpvc primary_f1bai8sv default_f1tpsmcd"
+>
+  Default
+</button>
+`;
+
+exports[`Button should match snapshot 2`] = `
+<button
+  className="button_fbnlpvc error_f1f5vffv default_f1tpsmcd"
+>
+  Error
+</button>
+`;
+
+exports[`Button should match snapshot 3`] = `
+<button
+  className="button_fbnlpvc primary_f1bai8sv default_f1tpsmcd"
+>
+  Primary
+</button>
+`;
+
+exports[`Button should match snapshot 4`] = `
+<button
+  className="button_fbnlpvc secondary_fr1jdjh default_f1tpsmcd"
+>
+  Secondary
+</button>
+`;
+
+exports[`Button should match snapshot 5`] = `
+<button
+  className="button_fbnlpvc success_f1a4qxdm default_f1tpsmcd"
+>
+  Success
+</button>
+`;
+
+exports[`Button should match snapshot 6`] = `
+<button
+  className="button_fbnlpvc primary_f1bai8sv default_f1tpsmcd"
+>
+  Success
+</button>
+`;
+
+exports[`Button should match snapshot 7`] = `
+<button
+  className="button_fbnlpvc primary_f1bai8sv small_ftp1rns"
+>
+  Success
+</button>
+`;
+
+exports[`Button should match snapshot 8`] = `
+<button
+  className="button_fbnlpvc primary_f1bai8sv large_f1iu98hc"
+>
+  Success
+</button>
+`;

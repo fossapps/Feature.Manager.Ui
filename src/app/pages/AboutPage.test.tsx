@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import * as React from "react";
-import { Button } from "../components/Button";
+import { Button } from "../components/Button/Button";
 import { setLanguage as setLanguageActionCreator } from "../redux/modules/settingsActionCreators";
 import { ISettingsState } from "../redux/modules/settingsModule";
 import { mapDispatchToProps, mapStateToProps, UnconnectedAboutPage } from "./AboutPage";
