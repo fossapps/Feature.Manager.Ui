@@ -1,6 +1,12 @@
 import { Client, Service } from "@crazyfactory/tinka";
 import { ContentTypeMiddleware } from "./middlewares/ContentTypeMiddleware";
 import { WrapMiddleware } from "./middlewares/WrapMiddleware";
+import { FeatureRuns } from "./nodes/FeatureRuns";
+import { Features } from "./nodes/Features";
+
+export interface IProblemDetails {
+  title: string;
+}
 
 export class Sdk extends Service {
   public static instance: Sdk = null;
@@ -16,5 +22,13 @@ export class Sdk extends Service {
     client.addMiddleware(new WrapMiddleware());
     client.addMiddleware(new ContentTypeMiddleware());
     return new Sdk(client);
+  }
+
+  public get features(): Features {
+    return new Features(this.client);
+  }
+
+  public get featureRuns(): FeatureRuns {
+    return new FeatureRuns(this.client);
   }
 }
