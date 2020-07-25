@@ -5,8 +5,13 @@ import { FeatureRuns } from "./nodes/FeatureRuns";
 import { Features } from "./nodes/Features";
 
 export interface IProblemDetails {
+  status: number;
   title: string;
 }
+
+export const isProblemDetails = (item: any | IProblemDetails): item is IProblemDetails => {
+  return "title" in item;
+};
 
 export class Sdk extends Service {
   public static instance: Sdk = null;
