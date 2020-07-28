@@ -10,9 +10,10 @@ describe("<HomePage />", () => {
     };
     const props = mapStateToProps({ features });
     expect(props).toEqual({
-      translations: {
-        hello: "Hello!"
-      }
+      error: null,
+      features: [],
+      loaded: true,
+      pending: false
     });
   });
 });
