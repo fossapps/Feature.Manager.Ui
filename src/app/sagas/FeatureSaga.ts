@@ -1,17 +1,17 @@
 import autobind from "autobind-decorator";
 import { call, CallEffect, ForkEffect, put, PutEffect, takeLatest } from "redux-saga/effects";
 import { ActionType, getType } from "typesafe-actions";
-import { IProblemDetails, isProblemDetails } from "../../Sdk";
-import { IFeature } from "../../Sdk/nodes/Features";
+import { isProblemDetails } from "../../Sdk";
 import { featureActionCreators } from "../redux/modules/features/featureActionCreators";
-import { BaseSaga } from "./BaseSaga";
+import { BaseSaga, YieldReturn } from "./BaseSaga";
 
 export class FeatureSaga extends BaseSaga {
   @autobind
   public *fetchFeatures(): IterableIterator<CallEffect | PutEffect<ActionType<typeof featureActionCreators>>> {
     try {
+      const client = this.client;
       yield put(featureActionCreators.setPending(null));
-      const response: IFeature[] | IProblemDetails = yield call(this.client.features.getFeatures);
+      const response: YieldReturn<typeof client.features.getFeatures> = yield call(client.features.getFeatures);
       if (isProblemDetails(response)) {
         yield put(featureActionCreators.setRejected(null, response.title));
         return;

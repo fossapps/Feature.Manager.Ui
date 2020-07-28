@@ -1,7 +1,7 @@
 import { IFeatureRun } from "../../../../Sdk/nodes/FeatureRuns";
 import { createAsyncActions } from "../baseModule";
 
-export const featureRunsActionCreator = createAsyncActions(
+export const fetchFeatureRunsForFeature = createAsyncActions(
   "FEATURE_RUNS/LOAD_RUNS",
   "FEATURE_RUNS/LOAD_RUNS_PENDING",
   "FEATURE_RUNS/LOAD_RUNS_FULFILLED",

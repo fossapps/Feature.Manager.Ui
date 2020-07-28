@@ -1,6 +1,6 @@
 import { IFeatureRun } from "../../../../Sdk/nodes/FeatureRuns";
-import { featureRunsActionCreator } from "./featureRunsActionCreator";
 import { featureRunsReducer } from "./featureRunsModule";
+import { fetchFeatureRunsForFeature } from "./fetchFeatureRunsForFeature";
 
 describe("featureRunsModule", () => {
   describe("initialState", () => {
@@ -15,7 +15,7 @@ describe("featureRunsModule", () => {
   describe("pending state", () => {
     it("should set pending to true when fetching is started", () => {
       const mockState = { error: null, loaded: false, pending: false, runs: [] };
-      const data = featureRunsReducer(mockState, featureRunsActionCreator.setPending(null));
+      const data = featureRunsReducer(mockState, fetchFeatureRunsForFeature.setPending(null));
       expect(data.pending).toBeTruthy();
     });
   });
@@ -31,7 +31,7 @@ describe("featureRunsModule", () => {
         runToken: "",
         startAt: ""
       };
-      const data = featureRunsReducer(mockState, featureRunsActionCreator.setFulfilled([mockRun]));
+      const data = featureRunsReducer(mockState, fetchFeatureRunsForFeature.setFulfilled([mockRun]));
       expect(data.runs[0]).toBe(mockRun);
     });
 
@@ -45,7 +45,7 @@ describe("featureRunsModule", () => {
         runToken: "",
         startAt: ""
       };
-      const data = featureRunsReducer(mockState, featureRunsActionCreator.setFulfilled([mockRun]));
+      const data = featureRunsReducer(mockState, fetchFeatureRunsForFeature.setFulfilled([mockRun]));
       expect(data.loaded).toBeTruthy();
     });
 
@@ -59,7 +59,7 @@ describe("featureRunsModule", () => {
         runToken: "",
         startAt: ""
       };
-      const data = featureRunsReducer(mockState, featureRunsActionCreator.setFulfilled([mockRun]));
+      const data = featureRunsReducer(mockState, fetchFeatureRunsForFeature.setFulfilled([mockRun]));
       expect(data.pending).toBeFalsy();
     });
   });
@@ -67,7 +67,7 @@ describe("featureRunsModule", () => {
   describe("error state", () => {
     it("should set loaded state to true, error to error value, and pending to false", () => {
       const mockState = { error: null, loaded: false, pending: true, runs: [] };
-      const data = featureRunsReducer(mockState, featureRunsActionCreator.setRejected(null, "some error"));
+      const data = featureRunsReducer(mockState, fetchFeatureRunsForFeature.setRejected(null, "some error"));
       expect(data.error).toBe("some error");
       expect(data.pending).toBeFalsy();
       expect(data.loaded).toBeTruthy();
