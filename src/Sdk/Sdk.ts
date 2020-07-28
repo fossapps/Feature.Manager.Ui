@@ -16,7 +16,7 @@ export const isProblemDetails = (item: any | IProblemDetails): item is IProblemD
 export class Sdk extends Service {
   public static instance: Sdk = null;
   public static getInstance(baseUrl: string): Sdk {
-    if (!Sdk.instance === null) {
+    if (Sdk.instance === null) {
       Sdk.instance = Sdk.createSdk(baseUrl);
     }
     return Sdk.instance;

@@ -18,6 +18,7 @@ export class FeatureSaga extends BaseSaga {
       }
       yield put(featureActionCreators.setFulfilled(response));
     } catch (e) {
+      console.error(e);
       yield put(featureActionCreators.setRejected(null, e.toString()));
     }
   }

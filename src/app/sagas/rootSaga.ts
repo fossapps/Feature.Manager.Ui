@@ -6,7 +6,8 @@ import { SettingsSaga } from "./SettingsSaga";
 import { StarsSaga } from "./StarsSaga";
 
 export default function* rootSaga(): IterableIterator<AllEffect<any>> {
-  const api = Sdk.getInstance("");
+  // eslint-disable-next-line @typescript-eslint/tslint/config
+  const api = Sdk.getInstance("http://localhost:5000");
   yield all([
     (new SettingsSaga(api)).watch(),
     (new StarsSaga(api)).watch(),
