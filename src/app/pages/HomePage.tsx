@@ -1,72 +1,84 @@
+import autobind from "autobind-decorator";
 import * as React from "react";
 import { connect } from "react-redux";
-import { createSelector } from "reselect";
-import { stylesheet } from "typestyle";
-import { Button } from "../components/Button/Button";
-import { Color } from "../constants/Color";
-import crazyImage from "../images/crazy.png";
-import { Translator } from "../models/Translator";
-import { ITranslator } from "../models/TranslatorInterfaces";
+import { Dispatch } from "redux";
+import { ICreateFeatureRequest, IFeature } from "../../Sdk/nodes/Features";
+import { EmptyState } from "../containers/EmptyState";
+import { ErrorState } from "../containers/ErrorState";
+import { LoadingState } from "../containers/LoadingState";
 import { IStore } from "../redux/IStore";
-import { translationsSelector } from "../selectors/translationsSelector";
-
-const classNames = stylesheet({
-  container: {
-    color: Color.PRIMARY,
-    textAlign: "center"
-  }
-});
+import { createFeatureActionCreators, featureActionCreators } from "../redux/modules/features/featureActionCreators";
 
 interface IStateToProps {
-  translations: {
-    hello: string;
-  };
+  error: string;
+  features: IFeature[];
+  loaded: boolean;
+  pending: boolean;
+}
+interface IDispatchToProps {
+  createNewFeature: (feature: ICreateFeatureRequest) => void;
+  loadFeatures: () => void;
 }
 
-class HomePage extends React.Component<IStateToProps> {
+class HomePage extends React.Component<IStateToProps & IDispatchToProps> {
+  public componentDidMount(): void {
+    if (!this.props.loaded) {
+      this.props.loadFeatures();
+    }
+  }
+
   public render(): JSX.Element {
-    const { translations } = this.props;
+    if (this.props.pending) {
+      return (
+        <LoadingState>Pending</LoadingState>
+      );
+    }
+    if (this.props.error) {
+      return (
+        <ErrorState>{this.props.error}</ErrorState>
+      );
+    }
+    if (this.props.features.length === 0) {
+      return (
+        <EmptyState onActionClick={this.handleCreateNewFeatureClick}/>
+      );
+    }
+    // finally return actual list
     return (
-      <div className={classNames.container}>
-        <a href={"https://www.crazy-factory.com"}>
-          <img alt={"crazy logo"} src={crazyImage}/>
-        </a>
-        <p>{translations.hello}</p>
-        <Button btnSize="small">small</Button>
-        &nbsp;
-        <Button>default</Button>
-        &nbsp;
-        <Button btnSize="large">large</Button>
-        &nbsp;
-        <Button type="primary">primary</Button>
-        &nbsp;
-        <Button type="secondary">secondary</Button>
-        &nbsp;
-        <Button type="danger">error</Button>
-        &nbsp;
-        <Button type="success">success</Button>
+      <div>
+        Home Page
       </div>
     );
   }
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  @autobind
+  private handleCreateNewFeatureClick(): void {
+    const featId = prompt("Enter feature ID", "APP-1");
+    const description = prompt("enter feature description", "");
+    const hypothesis = prompt("enter hypothesis", "");
+    this.props.createNewFeature({ hypothesis, featId, description });
+  }
 }
 
-const componentTranslationsSelector = createSelector(
-  translationsSelector,
-  (translations) => {
-    const translator: ITranslator = new Translator(translations);
-    return {
-      hello: translator.translate("Hello")
-    };
-  }
-);
-
-function mapStateToProps(state: Pick<IStore, "settings">): IStateToProps {
+function mapStateToProps(state: Pick<IStore, "features">): IStateToProps {
   return {
-    translations: componentTranslationsSelector(state)
+    error: state.features.error,
+    features: state.features.features,
+    loaded: state.features.loaded,
+    pending: state.features.pending
   };
 }
 
-const connected = connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = (dispatch: Dispatch): IDispatchToProps => {
+  return {
+    createNewFeature: (feature: ICreateFeatureRequest) => dispatch(createFeatureActionCreators.invoke(feature)),
+    loadFeatures: () => dispatch(featureActionCreators.invoke(null))
+  };
+};
+
+const connected = connect(mapStateToProps, mapDispatchToProps)(HomePage);
+
 export {
   connected as HomePage,
   HomePage as UnconnectedHomePage,

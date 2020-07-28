@@ -23,8 +23,7 @@ setupCss();
 const classNames = stylesheet({
   container: {
     margin: 0,
-    padding: 0,
-    textAlign: "center"
+    padding: 0
   }
 });
 

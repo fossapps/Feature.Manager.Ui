@@ -1,0 +1,18 @@
+version: '3.0'
+services:
+  server:
+    image: fossapps/feature.manager:2.1.0
+    ports:
+    - 5000:5000
+    environment:
+      - DatabaseConfig__Host=database
+      - DatabaseConfig__Port=5432
+      - DatabaseConfig__User=featuremanager
+      - DatabaseConfig__Password=secret
+      - DatabaseConfig__Name=features
+  database:
+    image: postgres:11-alpine
+    environment:
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_USER=featuremanager
+      - POSTGRES_DB=features

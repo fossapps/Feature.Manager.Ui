@@ -2,7 +2,7 @@ import { IFetchRequest, Service } from "@crazyfactory/tinka";
 import autobind from "autobind-decorator";
 import { IProblemDetails } from "../Sdk";
 
-interface ICreateFeatureRequest {
+export interface ICreateFeatureRequest {
   description: string;
   featId: string;
   hypothesis: string;
@@ -22,7 +22,7 @@ export class Features extends Service {
     const request = {
       body: JSON.stringify(feature),
       method: "PUT",
-      url: "/api/features"
+      url: "/api/feature"
     } as IFetchRequest;
     return this.client.process(request);
   }
