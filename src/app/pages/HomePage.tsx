@@ -1,8 +1,11 @@
+import autobind from "autobind-decorator";
 import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { IFeature } from "../../Sdk/nodes/Features";
+import { ICreateFeatureRequest, IFeature } from "../../Sdk/nodes/Features";
 import { EmptyState } from "../containers/EmptyState";
+import { ErrorState } from "../containers/ErrorState";
+import { LoadingState } from "../containers/LoadingState";
 import { IStore } from "../redux/IStore";
 import { featureActionCreators } from "../redux/modules/features/featureActionCreators";
 
@@ -13,6 +16,7 @@ interface IStateToProps {
   pending: boolean;
 }
 interface IDispatchToProps {
+  createNewFeature: (feature: ICreateFeatureRequest) => void;
   loadFeatures: () => void;
 }
 
@@ -25,19 +29,18 @@ class HomePage extends React.Component<IStateToProps & IDispatchToProps> {
 
   public render(): JSX.Element {
     if (this.props.pending) {
-      // render pending spinner
       return (
-        <div>Pending...</div>
+        <LoadingState>Pending</LoadingState>
       );
     }
     if (this.props.error) {
       return (
-        <div>error...</div>
+        <ErrorState>{this.props.error}</ErrorState>
       );
     }
     if (this.props.features.length === 0) {
       return (
-        <EmptyState/>
+        <EmptyState onActionClick={this.handleCreateNewFeatureClick}/>
       );
     }
     // finally return actual list
@@ -46,6 +49,15 @@ class HomePage extends React.Component<IStateToProps & IDispatchToProps> {
         Home Page
       </div>
     );
+  }
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  @autobind
+  private handleCreateNewFeatureClick(): void {
+    const featId = prompt("Enter feature ID", "APP-1");
+    const description = prompt("enter feature description", "");
+    const hypothesis = prompt("enter hypothesis", "");
+    this.props.createNewFeature({ hypothesis, featId, description });
   }
 }
 
@@ -60,6 +72,7 @@ function mapStateToProps(state: Pick<IStore, "features">): IStateToProps {
 
 const mapDispatchToProps = (dispatch: Dispatch): IDispatchToProps => {
   return {
+    createNewFeature: (feature) => console.info(feature),
     loadFeatures: () => dispatch(featureActionCreators.invoke(null))
   };
 };

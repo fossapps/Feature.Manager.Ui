@@ -136,7 +136,7 @@ const tslintRules = {
     "double"
   ],
   "react-no-dangerous-html": true,
-  "react-this-binding-issue": true,
+  "react-this-binding-issue": [true, {'bind-decorators': ['autobind']}],
   "semicolon": [
     true,
     "always"

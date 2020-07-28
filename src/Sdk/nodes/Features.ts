@@ -2,7 +2,7 @@ import { IFetchRequest, Service } from "@crazyfactory/tinka";
 import autobind from "autobind-decorator";
 import { IProblemDetails } from "../Sdk";
 
-interface ICreateFeatureRequest {
+export interface ICreateFeatureRequest {
   description: string;
   featId: string;
   hypothesis: string;

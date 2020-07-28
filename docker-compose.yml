@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   server:
-    image: fossapps/feature.manager:2.0.0
+    image: fossapps/feature.manager:a2f9
     ports:
     - 5000:5000
     environment:
