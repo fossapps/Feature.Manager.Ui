@@ -1,7 +1,8 @@
 import { fork, ForkEffect } from "redux-saga/effects";
+import { Sdk } from "../../Sdk";
 
 export abstract class BaseSaga {
-  constructor() {
+  constructor(protected client: Sdk) {
     this.registerListeners = this.registerListeners.bind(this);
   }
 

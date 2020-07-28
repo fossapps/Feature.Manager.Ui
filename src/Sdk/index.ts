@@ -1,1 +1,1 @@
-export { Sdk, isProblemDetails } from "./Sdk";
+export { Sdk, isProblemDetails, IProblemDetails } from "./Sdk";

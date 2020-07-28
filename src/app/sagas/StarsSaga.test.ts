@@ -13,7 +13,7 @@ describe("StarsSaga", () => {
         {
           dispatch: (action) => dispatched.push(action)
         },
-        (new StarsSaga()).fetchStarsCount
+        (new StarsSaga(null)).fetchStarsCount
       ).toPromise().then(() => {
         expect(dispatched).toEqual([
           { payload: null, type: "STARS/LOAD_STARS_COUNT_PENDING" },
@@ -30,7 +30,7 @@ describe("StarsSaga", () => {
         {
           dispatch: (action) => dispatched.push(action)
         },
-        (new StarsSaga()).fetchStarsCount
+        (new StarsSaga(null)).fetchStarsCount
       ).toPromise().then(() => {
         expect(dispatched).toEqual([
           { payload: null, type: "STARS/LOAD_STARS_COUNT_PENDING" },
