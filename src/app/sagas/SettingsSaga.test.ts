@@ -13,7 +13,7 @@ describe("SettingsSaga", () => {
         {
           dispatch: (action) => dispatched.push(action)
         },
-        (new SettingsSaga()).fetchTranslations,
+        (new SettingsSaga(null)).fetchTranslations,
         {
           payload: "en",
           type: "SETTINGS/SET_LANGUAGE"
@@ -34,7 +34,7 @@ describe("SettingsSaga", () => {
         {
           dispatch: (action) => dispatched.push(action)
         },
-        (new SettingsSaga()).fetchTranslations,
+        (new SettingsSaga(null)).fetchTranslations,
         {
           payload: "en",
           type: "SETTINGS/SET_LANGUAGE"

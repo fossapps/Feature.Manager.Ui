@@ -8,7 +8,7 @@ interface ICreateFeatureRequest {
   hypothesis: string;
 }
 
-interface IFeature {
+export interface IFeature {
   description: string;
   featId: string;
   featureToken: string;
