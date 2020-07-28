@@ -7,7 +7,7 @@ import { EmptyState } from "../containers/EmptyState";
 import { ErrorState } from "../containers/ErrorState";
 import { LoadingState } from "../containers/LoadingState";
 import { IStore } from "../redux/IStore";
-import { featureActionCreators } from "../redux/modules/features/featureActionCreators";
+import { createFeatureActionCreators, featureActionCreators } from "../redux/modules/features/featureActionCreators";
 
 interface IStateToProps {
   error: string;
@@ -72,7 +72,7 @@ function mapStateToProps(state: Pick<IStore, "features">): IStateToProps {
 
 const mapDispatchToProps = (dispatch: Dispatch): IDispatchToProps => {
   return {
-    createNewFeature: (feature) => console.info(feature),
+    createNewFeature: (feature: ICreateFeatureRequest) => dispatch(createFeatureActionCreators.invoke(feature)),
     loadFeatures: () => dispatch(featureActionCreators.invoke(null))
   };
 };

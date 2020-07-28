@@ -22,7 +22,7 @@ export class Features extends Service {
     const request = {
       body: JSON.stringify(feature),
       method: "PUT",
-      url: "/api/features"
+      url: "/api/feature"
     } as IFetchRequest;
     return this.client.process(request);
   }
