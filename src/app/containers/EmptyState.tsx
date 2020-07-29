@@ -8,11 +8,9 @@ const styles = {
   container: style({
     display: "flex",
     flexDirection: "column",
-    margin: "0 auto",
     marginTop: Spacing.XXXL,
     padding: Spacing.L,
-    paddingLeft: Spacing.XXXL,
-    width: 960
+    paddingLeft: Spacing.XXXL
   }),
   iconContainer: style({
     width: 200
@@ -23,6 +21,7 @@ const styles = {
 };
 
 interface IProps {
+  buttonLabel: string;
   onActionClick: () => void;
 }
 
@@ -33,9 +32,9 @@ export const EmptyState: React.FC<IProps> = (props) => {
         <FeatureIcon/>
       </div>
       <h1 className={styles.pullDown}>No items yet</h1>
-      <p>There are no features created yet, why don't we start by creating one?</p>
+      <p>{props.children}</p>
       <div>
-        <Button onClick={props.onActionClick} type={"primary"}>Create a Feature</Button>
+        <Button onClick={props.onActionClick} type={"primary"}>{props.buttonLabel}</Button>
       </div>
     </div>
   );

@@ -7,19 +7,15 @@ interface IRoute {
   path: string;
 }
 type RoutablePages = "homePage"
-| "aboutPage"
-| "counterPage"
-| "starsPage";
+| "runsPage";
 
 type RouteConfig = Record<RoutablePages, Omit<IRoute, "name">>;
 export type RoutePageMap = Record<RoutablePages, ConnectedComponent<any, any>>;
 type RouteNavigate = Record<RoutablePages, (...params: any[]) => Action>;
 
 const config: RouteConfig = {
-  aboutPage: { path: "/about" },
-  counterPage: { path: "/counter" },
   homePage: { path: "/" },
-  starsPage: { path: "/stars" }
+  runsPage: { path: "/runs/:featId" }
 };
 
 export function getRoutes(baseUrl: string = ""): Record<RoutablePages, IRoute> {
@@ -38,8 +34,6 @@ function getNavigateAction<T extends {[key: string]: any}>(routeName: RoutablePa
 const routes = getRoutes();
 
 export const navigate: RouteNavigate = {
-  aboutPage: () => getNavigateAction(routes.aboutPage.name),
-  counterPage: () => getNavigateAction(routes.counterPage.name),
   homePage: () => getNavigateAction(routes.homePage.name),
-  starsPage: () => getNavigateAction(routes.starsPage.name)
+  runsPage: (featId: string) => getNavigateAction(routes.runsPage.name, { featId })
 };
