@@ -53,6 +53,7 @@ export class FeatureRunSaga extends BaseSaga {
   }
 
   protected* registerListeners(): IterableIterator<ForkEffect> {
-    return yield takeLatest(getType(fetchFeatureRunsForFeature.invoke), this.fetchRuns);
+    yield takeLatest(getType(fetchFeatureRunsForFeature.invoke), this.fetchRuns);
+    yield takeLatest(getType(createFeatureRunForFeature.invoke), this.createFeatureRun);
   }
 }

@@ -7,6 +7,7 @@ import { stylesheet } from "typestyle";
 import { config as appConfig } from "../../../config";
 import { setupCss } from "../helpers/setupCss";
 import { HomePage } from "../pages/HomePage";
+import { RunsPage } from "../pages/RunsPage";
 import { IStore } from "../redux/IStore";
 import { RoutePageMap } from "../routes/routes";
 import { Header } from "./Header";
@@ -15,8 +16,9 @@ setupCss();
 
 const classNames = stylesheet({
   container: {
-    margin: 0,
-    padding: 0
+    margin: "0 auto",
+    padding: 0,
+    width: 1024
   }
 });
 
@@ -30,7 +32,7 @@ interface IStateToProps {
 class App extends React.Component<IStateToProps> {
   private components: RoutePageMap = {
     homePage: HomePage,
-    runsPage: null
+    runsPage: RunsPage
   };
   public render(): JSX.Element {
     const { route, translations: { notFound } } = this.props;
