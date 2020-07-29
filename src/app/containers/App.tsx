@@ -46,7 +46,10 @@ class App extends React.Component<IStateToProps> {
 }
 
 const mapStateToProps = (state: Pick<IStore, "router">): IStateToProps & Partial<RouterState> => ({
-  ...createRouteNodeSelector("")(state)
+  ...createRouteNodeSelector("")(state),
+  translations: {
+    notFound: "Not found"
+  }
 });
 
 const connected = connect(mapStateToProps)(App);
