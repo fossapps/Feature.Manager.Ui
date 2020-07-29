@@ -29,7 +29,7 @@ interface IProps {
   variant: TBadgeVariant;
 }
 
-export class Badge extends React.Component<IProps> {
+export class Badge extends React.Component<IProps, any> {
   public render(): JSX.Element {
     const { children, variant } = this.props;
     return (
