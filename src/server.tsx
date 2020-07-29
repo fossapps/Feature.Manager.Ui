@@ -61,20 +61,12 @@ app.get("*", (req: express.Request, res: express.Response) => {
       return;
     }
 
-    const languageHelper = new LanguageHelper(req.headers["accept-language"] as string);
     const store = configureStore(router, {
       router: {
         previousRoute: null,
         route: routeState,
         transitionError: null,
         transitionRoute: null
-      },
-      settings: {
-        error: "",
-        language: "en",
-        loaded: true,
-        pending: false,
-        translations: languageHelper.getTranslations()
       }
     });
 
