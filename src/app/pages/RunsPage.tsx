@@ -4,7 +4,10 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { createRouteNodeSelector } from "redux-router5";
 import { State as IRouterState } from "router5";
-import { ICreateFeatureRunRequest, IFeatureRun } from "../../Sdk/nodes/FeatureRuns";
+import { style } from "typestyle";
+
+import { ICreateFeatureRunRequest, IFeatureRun, IStopFeatureRunRequest } from "../../Sdk/nodes/FeatureRuns";
+import { RunCard } from "../components/RunCard";
 import { EmptyState } from "../containers/EmptyState";
 import { ErrorState } from "../containers/ErrorState";
 import { LoadingState } from "../containers/LoadingState";
@@ -25,10 +28,18 @@ interface IStateToProps {
 interface IDispatchToProps {
   createRun: (run: ICreateFeatureRunRequest) => void;
   loadRuns: (featId: string) => void;
+  stopRun: (result: IStopFeatureRunRequest) => void;
 }
+const styles = {
+  container: style({
+    display: "flex",
+    flexDirection: "column"
+  })
+};
 
 class Page extends React.PureComponent<IStateToProps & IDispatchToProps> {
-  public componentDidMount(): void {
+  constructor(props: IStateToProps & IDispatchToProps) {
+    super(props);
     if (!this.props.loaded) {
       this.props.loadRuns(this.props.featureId);
     }
@@ -54,8 +65,8 @@ class Page extends React.PureComponent<IStateToProps & IDispatchToProps> {
     }
     // finally return actual list
     return (
-      <div>
-        Runs Page
+      <div className={styles.container}>
+        {this.props.runs.map(this.renderRun)}
       </div>
     );
   }
@@ -83,6 +94,20 @@ class Page extends React.PureComponent<IStateToProps & IDispatchToProps> {
     // todo: find a way to parse date correctly, make sure timezones are handled correctly on backend.
     this.props.createRun(request);
   }
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  @autobind
+  private handleStopRun(runId: string): void {
+    this.props.stopRun({ runId, stopResult: "ChangeSettings" });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  @autobind
+  private renderRun(run: IFeatureRun): JSX.Element {
+    return (
+      <RunCard onStopRequest={this.handleStopRun} {...run} key={run.id}/>
+    );
+  }
 }
 
 const mapStateToProps = (state: Pick<IStore, "featureRuns">): IStateToProps => {
@@ -99,7 +124,8 @@ const mapStateToProps = (state: Pick<IStore, "featureRuns">): IStateToProps => {
 const mapDispatchToProps = (dispatch: Dispatch): IDispatchToProps => {
   return {
     createRun: (run: ICreateFeatureRunRequest) => dispatch(createFeatureRunForFeature.invoke(run)),
-    loadRuns: (featId: string) => dispatch(fetchFeatureRunsForFeature.invoke(featId))
+    loadRuns: (featId: string) => dispatch(fetchFeatureRunsForFeature.invoke(featId)),
+    stopRun: (result) => console.info(result)
   };
 };
 

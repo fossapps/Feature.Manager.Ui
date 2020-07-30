@@ -32,9 +32,10 @@ const styles = {
   })
 };
 class HomePage extends React.Component<IStateToProps & IDispatchToProps> {
-  public componentDidMount(): void {
-    if (!this.props.loaded) {
-      this.props.loadFeatures();
+  constructor(props: IStateToProps & IDispatchToProps) {
+    super(props);
+    if (!props.loaded) {
+      props.loadFeatures();
     }
   }
 
@@ -77,7 +78,7 @@ class HomePage extends React.Component<IStateToProps & IDispatchToProps> {
   private renderFeatures(feature: IFeature): JSX.Element {
     const routes = getRoutes();
     return (
-      <ConnectedLink routeName={routes.runsPage.name} routeParams={{ featId: feature.featId }}>
+      <ConnectedLink key={feature.featId} routeName={routes.runsPage.name} routeParams={{ featId: feature.featId }}>
         <Card description={feature.description} featureId={feature.featId} hypothesis={feature.hypothesis}/>
       </ConnectedLink>
     );
