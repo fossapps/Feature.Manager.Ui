@@ -9,6 +9,8 @@ export interface ICreateFeatureRunRequest {
   startAt: string;
 }
 
+export type TStopResult = "AllB" | "Removed" | "AllA" | "ChangeSettings";
+
 export interface IFeatureRun {
   allocation: number;
   endAt?: string;
@@ -16,12 +18,12 @@ export interface IFeatureRun {
   id: string;
   runToken: string;
   startAt: string;
-  stopResult?: "AllB" | "Removed" | "AllA" | "ChangeSettings";
+  stopResult?: TStopResult;
 }
 
 export interface IStopFeatureRunRequest {
   runId: string;
-  stopResult: string;
+  stopResult: TStopResult;
 }
 
 export class FeatureRuns extends Service {
