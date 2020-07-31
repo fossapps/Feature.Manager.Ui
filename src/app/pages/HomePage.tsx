@@ -7,13 +7,13 @@ import { style } from "typestyle";
 import { ICreateFeatureRequest, IFeature } from "../../Sdk/nodes/Features";
 import { Card } from "../components/Card/Card";
 import { FloatingActionButton } from "../components/FloatingActionButton/FloatingActionButton";
+import { Spacing } from "../constants";
 import { EmptyState } from "../containers/EmptyState";
 import { ErrorState } from "../containers/ErrorState";
 import { LoadingState } from "../containers/LoadingState";
 import { IStore } from "../redux/IStore";
 import { createFeatureActionCreators, featureActionCreators } from "../redux/modules/features/featureActionCreators";
 import { getRoutes } from "../routes/routes";
-import {Spacing} from "../constants";
 
 interface IStateToProps {
   error: string;

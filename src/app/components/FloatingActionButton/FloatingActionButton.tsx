@@ -1,6 +1,6 @@
 import React from "react";
 import { style } from "typestyle";
-import {BorderRadius, Spacing} from "../../constants";
+import { BorderRadius, Spacing } from "../../constants";
 import { Button } from "../Button/Button";
 
 interface IProps {

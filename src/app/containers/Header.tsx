@@ -1,8 +1,8 @@
 import * as React from "react";
 import { ConnectedLink } from "react-router5";
 import { stylesheet } from "typestyle";
+import { Spacing } from "../constants";
 import { getRoutes } from "../routes/routes";
-import {Spacing} from "../constants";
 
 const classNames = stylesheet({
   activeLink: {

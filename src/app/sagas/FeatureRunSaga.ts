@@ -4,7 +4,7 @@ import { ActionType, getType } from "typesafe-actions";
 import { isProblemDetails } from "../../Sdk";
 import {
   createFeatureRunForFeature,
-  fetchFeatureRunsForFeature
+  fetchFeatureRunsForFeature, stopFeatureRun
 } from "../redux/modules/featureRuns/fetchFeatureRunsForFeature";
 import { BaseSaga, YieldReturn } from "./BaseSaga";
 
@@ -52,8 +52,30 @@ export class FeatureRunSaga extends BaseSaga {
     }
   }
 
+  @autobind
+  public* stopRun(action: ActionType<typeof stopFeatureRun.invoke>):
+  IterableIterator<
+  CallEffect | PutEffect<ActionType<typeof stopFeatureRun | typeof fetchFeatureRunsForFeature.invoke>>
+  > {
+    try {
+      const client = this.client;
+      yield put(stopFeatureRun.setPending(null));
+      const { featureId, ...payload } = action.payload;
+      const result: YieldReturn<typeof client.featureRuns.stopRun> = yield call(client.featureRuns.stopRun, payload);
+      if (isProblemDetails(result)) {
+        yield put(stopFeatureRun.setRejected(null, result.title));
+        return;
+      }
+      yield put(stopFeatureRun.setFulfilled(null));
+      yield put(fetchFeatureRunsForFeature.invoke(featureId));
+    } catch (e) {
+      yield put(stopFeatureRun.setRejected(null, e.toString()));
+    }
+  }
+
   protected* registerListeners(): IterableIterator<ForkEffect> {
     yield takeLatest(getType(fetchFeatureRunsForFeature.invoke), this.fetchRuns);
     yield takeLatest(getType(createFeatureRunForFeature.invoke), this.createFeatureRun);
+    yield takeLatest(getType(stopFeatureRun.invoke), this.stopRun);
   }
 }
