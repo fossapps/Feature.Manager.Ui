@@ -21,6 +21,7 @@ jobs:
       - name: Push Stable Image (Only master)
         if: github.ref == 'refs/heads/master'
         run: |
+          TAG=`git rev-parse --short=4 ${GITHUB_SHA}`
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username "${{ secrets.DOCKERHUB_LOGIN }}" --password-stdin
           docker tag fossapps/feature.manager.ui:$TAG fossapps/feature.manager.ui:stable
           docker push fossapps/feature.manager.ui:stable
