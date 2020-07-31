@@ -29,3 +29,7 @@ jobs:
 
       - name: TypeCheck
         run: npm run type-check
+
+      - name: Upload Code Cov
+        run: bash <(curl -s https://codecov.io/bash)
+
