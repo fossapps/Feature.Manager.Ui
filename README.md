@@ -1,8 +1,8 @@
 # fossapps/feature.manager.ui
 
-[![Dependency Status](https://david-dm.org/fossapps/feature.manager.ui.svg)](https://david-dm.org/crazyfactory/feature.manager.ui)
-[![devDependency Status](https://david-dm.org/crazyfactory/feature.manager.ui/dev-status.svg)](https://david-dm.org/crazyfactory/feature.manager.ui?type=dev)
-[![GitHub issues](https://img.shields.io/github/issues/crazyfactory/feature.manager.ui.svg)](https://github.com/crazyfactory/feature.manager.ui/issues)
+[![Dependency Status](https://david-dm.org/fossapps/feature.manager.ui.svg)](https://david-dm.org/fossapps/feature.manager.ui)
+[![devDependency Status](https://david-dm.org/fossapps/feature.manager.ui/dev-status.svg)](https://david-dm.org/fossapps/feature.manager.ui?type=dev)
+[![GitHub issues](https://img.shields.io/github/issues/fossapps/feature.manager.ui.svg)](https://github.com/fossapps/feature.manager.ui/issues)
 ___
 
 Using technologies:
