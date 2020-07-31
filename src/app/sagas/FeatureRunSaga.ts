@@ -27,7 +27,7 @@ export class FeatureRunSaga extends BaseSaga {
         return;
       }
       yield put(createFeatureRunForFeature.setFulfilled(response));
-      yield put(fetchFeatureRunsForFeature.invoke(null));
+      yield put(fetchFeatureRunsForFeature.invoke(action.payload.featId));
     } catch (e) {
       yield put(createFeatureRunForFeature.setRejected(null, e.toString()));
     }
