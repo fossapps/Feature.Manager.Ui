@@ -1,0 +1,19 @@
+name: Build
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: build docker
+        run: |
+          export TAG=`git rev-parse --short=4 ${GITHUB_SHA}`
+          docker build . -t fossapps/feature.manager.ui:$TAG
+
+      - name: Push docker images
+        run: |
+          TAG=`git rev-parse --short=4 ${GITHUB_SHA}`
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username "${{ secrets.DOCKERHUB_LOGIN }}" --password-stdin
+          docker push fossapps/feature.manager.ui:$TAG
