@@ -12,7 +12,7 @@ Using technologies:
 [![Redux](./.github/redux.png)](https://github.com/reactjs/redux)
 
 
-[![Try in PWD](https://github.com/play-with-docker/stacks/raw/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://gist.githubusercontent.com/cyberhck/aea79cf0fc70030e8a0addb349a223d3/raw/5727758588f7b6341c764faf4fe01957f4576292/docker-compose.yml)
+[![Try in PWD](https://github.com/play-with-docker/stacks/raw/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://gist.githubusercontent.com/cyberhck/aea79cf0fc70030e8a0addb349a223d3/raw/e36d461b1ebd201363195f02fcde8810ff9d8375/docker-compose.yml)
 
 ## Installation
 
