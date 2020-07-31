@@ -4,7 +4,16 @@ import { FeatureRunSaga } from "./FeatureRunSaga";
 import { FeatureSaga } from "./FeatureSaga";
 
 const getApiUrl = () => {
-  if (localStorage.getItem("X-Override-Api-Url")) {
+  if (typeof window === "undefined") {
+    if (process.env.NODE_ENV === "production") {
+      // eslint-disable-next-line @typescript-eslint/tslint/config
+      return "http://server:5000";
+    }
+    // eslint-disable-next-line @typescript-eslint/tslint/config
+    return "http://localhost:5000";
+  }
+
+  if (localStorage && localStorage.getItem("X-Override-Api-Url")) {
     return localStorage.getItem("X-Override-Api-Url");
   }
   // eslint-disable-next-line @typescript-eslint/tslint/config
