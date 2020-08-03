@@ -6,6 +6,8 @@ import { Dispatch } from "redux";
 import { style } from "typestyle";
 import { ICreateFeatureRequest, IFeature } from "../../Sdk/nodes/Features";
 import { Card } from "../components/Card/Card";
+import { FloatingActionButton } from "../components/FloatingActionButton/FloatingActionButton";
+import { Spacing } from "../constants";
 import { EmptyState } from "../containers/EmptyState";
 import { ErrorState } from "../containers/ErrorState";
 import { LoadingState } from "../containers/LoadingState";
@@ -26,11 +28,25 @@ interface IDispatchToProps {
 
 const styles = {
   container: style({
+    flexGrow: 1,
+    padding: `${Spacing.S}px`,
+    position: "relative"
+  }),
+  featuresContainer: style({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap"
+  }),
+  floatingActionButtonContainer: style({
+    bottom: 10,
+    position: "absolute",
+    right: 10
+  }),
+  pullRight: style({
+    marginRight: Spacing.M
   })
 };
+
 class HomePage extends React.Component<IStateToProps & IDispatchToProps> {
   constructor(props: IStateToProps & IDispatchToProps) {
     super(props);
@@ -59,7 +75,12 @@ class HomePage extends React.Component<IStateToProps & IDispatchToProps> {
     }
     return (
       <div className={styles.container}>
-        {this.props.features.map(this.renderFeatures)}
+        <div className={styles.featuresContainer}>
+          {this.props.features.map(this.renderFeatures)}
+        </div>
+        <div className={styles.floatingActionButtonContainer}>
+          <FloatingActionButton onClick={this.handleCreateNewFeatureClick}/>
+        </div>
       </div>
     );
   }
@@ -78,7 +99,12 @@ class HomePage extends React.Component<IStateToProps & IDispatchToProps> {
   private renderFeatures(feature: IFeature): JSX.Element {
     const routes = getRoutes();
     return (
-      <ConnectedLink key={feature.featId} routeName={routes.runsPage.name} routeParams={{ featId: feature.featId }}>
+      <ConnectedLink
+        className={styles.pullRight}
+        key={feature.featId}
+        routeName={routes.runsPage.name}
+        routeParams={{ featId: feature.featId }}
+      >
         <Card description={feature.description} featureId={feature.featId} hypothesis={feature.hypothesis}/>
       </ConnectedLink>
     );

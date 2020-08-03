@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ConnectedLink } from "react-router5";
 import { stylesheet } from "typestyle";
+import { Spacing } from "../constants";
 import { getRoutes } from "../routes/routes";
 
 const classNames = stylesheet({
@@ -13,7 +14,7 @@ const classNames = stylesheet({
         $nest: {
           li: {
             display: "inline",
-            padding: "5px"
+            padding: `${Spacing.S}px`
           }
         },
         listStyleType: "none",

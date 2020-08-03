@@ -12,16 +12,16 @@ const config = {
         }
       ],
       meta: [
-        {charset: 'utf-8'},
-        {'http-equiv': 'x-ua-compatible', content: 'ie=edge'},
-        {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-        {name: 'description', content: 'React Redux Typescript'},
+        { charset: 'utf-8' },
+        { 'http-equiv': 'x-ua-compatible', "content": 'ie=edge' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'React Redux Typescript' },
       ],
       title: 'Crazy Factory'
     }
   },
   env: process.env.NODE_ENV || 'development',
-  host: process.env.HOST || 'localhost',
+  host: process.env.HOST || '0.0.0.0',
   port: process.env.PORT || 8889,
   ssr: true,
   sentry: {

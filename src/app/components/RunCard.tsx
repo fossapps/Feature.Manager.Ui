@@ -29,7 +29,7 @@ const Allocation: React.FC<{allocation: number, stopResult: TStopResult}> = (pro
     case "AllB":
       return <h1>After being open to {props.allocation}%, this feature is now All B</h1>;
     case "ChangeSettings":
-      return <h1>Changed settings after being open to {props.allocation}%</h1>;
+      return <h1>Expected to Changed settings after opening to {props.allocation}%</h1>;
     case "Removed":
       return (
         <h1>

@@ -7,14 +7,17 @@ import { State as IRouterState } from "router5";
 import { style } from "typestyle";
 
 import { ICreateFeatureRunRequest, IFeatureRun, IStopFeatureRunRequest } from "../../Sdk/nodes/FeatureRuns";
+import { FloatingActionButton } from "../components/FloatingActionButton/FloatingActionButton";
 import { RunCard } from "../components/RunCard";
+import { Spacing } from "../constants";
 import { EmptyState } from "../containers/EmptyState";
 import { ErrorState } from "../containers/ErrorState";
 import { LoadingState } from "../containers/LoadingState";
 import { IStore } from "../redux/IStore";
 import {
   createFeatureRunForFeature,
-  fetchFeatureRunsForFeature
+  fetchFeatureRunsForFeature,
+  stopFeatureRun
 } from "../redux/modules/featureRuns/fetchFeatureRunsForFeature";
 
 interface IStateToProps {
@@ -28,12 +31,22 @@ interface IStateToProps {
 interface IDispatchToProps {
   createRun: (run: ICreateFeatureRunRequest) => void;
   loadRuns: (featId: string) => void;
-  stopRun: (result: IStopFeatureRunRequest) => void;
+  stopRun: (result: IStopFeatureRunRequest & { featureId: string }) => void;
 }
 const styles = {
   container: style({
+    flexGrow: 1,
+    padding: `${Spacing.S}`,
+    position: "relative"
+  }),
+  featuresContainer: style({
     display: "flex",
     flexDirection: "column"
+  }),
+  floatingActionButtonContainer: style({
+    bottom: 10,
+    position: "absolute",
+    right: 10
   })
 };
 
@@ -63,10 +76,17 @@ class Page extends React.PureComponent<IStateToProps & IDispatchToProps> {
         </EmptyState>
       );
     }
-    // finally return actual list
+    const floatingActionButton = (
+      <div className={styles.floatingActionButtonContainer}>
+        <FloatingActionButton onClick={this.handleCreateNewRunClick}/>
+      </div>
+    );
     return (
       <div className={styles.container}>
-        {this.props.runs.map(this.renderRun)}
+        <div className={styles.featuresContainer}>
+          {this.props.runs.map(this.renderRun)}
+        </div>
+        {this.props.runs.some((x) => x.stopResult === null || x.stopResult === "AllB") ? null : floatingActionButton}
       </div>
     );
   }
@@ -98,7 +118,13 @@ class Page extends React.PureComponent<IStateToProps & IDispatchToProps> {
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @autobind
   private handleStopRun(runId: string): void {
-    this.props.stopRun({ runId, stopResult: "ChangeSettings" });
+    const outcomes = ["ChangeSettings", "AllB", "AllA", "Removed"];
+    const reason = prompt("enter outcome (Choose one):", outcomes.join(","));
+    if (!outcomes.includes(reason)) {
+      alert(`Expected one of ${outcomes.join(", ")}, but received ${reason}, please try again.`);
+      return;
+    }
+    this.props.stopRun({ runId, stopResult: reason as any, featureId: this.props.featureId });
   }
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -125,7 +151,7 @@ const mapDispatchToProps = (dispatch: Dispatch): IDispatchToProps => {
   return {
     createRun: (run: ICreateFeatureRunRequest) => dispatch(createFeatureRunForFeature.invoke(run)),
     loadRuns: (featId: string) => dispatch(fetchFeatureRunsForFeature.invoke(featId)),
-    stopRun: (result) => console.info(result)
+    stopRun: (result) => dispatch(stopFeatureRun.invoke(result))
   };
 };
 

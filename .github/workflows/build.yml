@@ -1,0 +1,35 @@
+name: Build
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '13'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Build Project (Production)
+        run: npm run build:prod
+
+      - name: Test
+        run: npm run test:no-cache -- --maxWorkers=4
+
+      - name: Lint
+        run: npm run lint
+
+      - name: TypeCheck
+        run: npm run type-check
+
+      - name: Upload Code Cov
+        run: bash <(curl -s https://codecov.io/bash)
+
